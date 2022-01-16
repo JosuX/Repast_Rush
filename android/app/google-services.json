@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335690270329",
+    "project_id": "repast-rush",
+    "storage_bucket": "repast-rush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335690270329:android:2c1690b34d390212b9f6a8",
+        "android_client_info": {
+          "package_name": "com.agudam.repast_rush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335690270329-0er682gb435rd9vtgg9t3gh87129p78g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_DRH-EW6b07TKMV7CSdgIFANOIBVvzGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335690270329-0er682gb435rd9vtgg9t3gh87129p78g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
