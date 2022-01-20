@@ -4,8 +4,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-import 'package:repast_rush/screens/authenticate/WelcomePage.dart';
-
 class IntroPage extends StatefulWidget {
   final Function toggleView;
   int start_index;

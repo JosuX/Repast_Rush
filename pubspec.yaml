@@ -40,6 +40,7 @@ dependencies:
   auto_size_text: ^3.0.0
   introduction_screen: ^2.1.0
   provider: ^6.0.2
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,11 +71,13 @@ flutter:
     - images/Intro3.png
     - images/Intro4.png
     - images/Welcome.png
+    - images/Home_lime.png
     - images/SignIn.png
     - images/icons/user.png
     - images/icons/mail.png
     - images/icons/key.png
     - images/icons/call-phone.png
+    - images/icons/bag.png
     - images/SignUp.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

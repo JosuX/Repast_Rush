@@ -1,10 +1,7 @@
 // ignore_for_file: unused_local_variable, file_names, non_constant_identifier_names, prefer_const_constructors, sized_box_for_whitespace, unused_element, unnecessary_new, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:repast_rush/screens/authenticate/SignInPage.dart';
-import 'package:repast_rush/screens/authenticate/WelcomePage.dart';
 import 'package:repast_rush/services/auth.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -35,6 +32,7 @@ extension EmailValidator on String {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
 
   bool remember = false;
@@ -42,6 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String password = "";
   String name = "";
   String phone = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -224,8 +223,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   Color(0xff8A9A5B))),
                           onPressed: () async {
                             if (_formkey.currentState!.validate()) {
-                              print(email);
-                              print(password);
+                              dynamic result =
+                                  await _auth.registerUser(email, password);
+                              if (result == null) {
+                                setState(() =>
+                                    error = "Please fill the required forms.");
+                              }
                             }
                           },
                           child: AutoSizeText("SIGN UP")),

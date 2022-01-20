@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:repast_rush/screens/home/food_shops.dart';
 import 'package:repast_rush/services/auth.dart';
 
 class Home extends StatelessWidget {
@@ -6,16 +9,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Text("Home"),
-        ElevatedButton(
-            onPressed: () async {
-              await _auth.signOut();
-            },
-            child: Text("Sign Out"))
-      ],
-    ));
+    return FoodShops();
   }
 }
