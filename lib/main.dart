@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:repast_rush/models/myuser.dart';
+import 'package:repast_rush/screens/home/home.dart';
 import 'package:repast_rush/screens/wrapper.dart';
 import 'package:repast_rush/services/auth.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<MyUser?>.value(
         value: AuthService().user,
-        initialData: null,
+       initialData: null,
         catchError: (User, MyUser) => null,
         // ignore: prefer_const_constructors
         child: MaterialApp(debugShowCheckedModeBanner: false, home: Wrapper()));
