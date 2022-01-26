@@ -2,8 +2,37 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:repast_rush/screens/home/shop_details.dart';
 
 class ShopCard extends StatefulWidget {
+  final Function toggleView;
+  final Function overrideView;
+  const ShopCard(
+      {Key? key,
+      this.shopname = "Food Shop A",
+      this.location = "Del Fierro St., Place A, Manila",
+      this.distance = "3.7km",
+      this.time = "11:00am-12:00pm",
+      this.shopinfo =
+          "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\" (Shop Info)",
+      this.price = "350 pesos",
+      this.hint = "Beef, Pork, Salad, Rice",
+      this.stocks = "5 left",
+      this.meal = "Lunch",
+      required this.toggleView,
+      required this.overrideView})
+      : super(key: key);
+
+  final String shopname;
+  final String location;
+  final String distance;
+  final String time;
+  final String shopinfo;
+  final String price;
+  final String hint;
+  final String stocks;
+  final String meal;
+
   @override
   _ShopCardState createState() => _ShopCardState();
 }
@@ -51,7 +80,7 @@ class _ShopCardState extends State<ShopCard> {
                       color: Colors.green,
                       child: Center(
                         child: AutoSizeText(
-                          "5 left",
+                          widget.stocks,
                           style: TextStyle(
                               fontSize: 12,
                               color: Colors.white,
@@ -71,7 +100,7 @@ class _ShopCardState extends State<ShopCard> {
                       children: [
                         Padding(padding: EdgeInsets.only(top: Hrefix * 12)),
                         AutoSizeText(
-                          "Food Shop A",
+                          widget.shopname,
                           textAlign: TextAlign.start,
                           style: TextStyle(
                               fontSize: 12,
@@ -80,7 +109,7 @@ class _ShopCardState extends State<ShopCard> {
                         ),
                         Padding(padding: EdgeInsets.only(top: Hrefix * 11)),
                         AutoSizeText(
-                          "Lunch",
+                          widget.meal,
                           style: TextStyle(
                               fontSize: 12,
                               color: Colors.black,
@@ -92,7 +121,7 @@ class _ShopCardState extends State<ShopCard> {
                           width: Wrefix * 124,
                           height: Hrefix * 28,
                           child: AutoSizeText(
-                            "Del Fierro St., Place A, Manila",
+                            widget.location,
                             maxLines: 2,
                             style: TextStyle(
                                 fontSize: 12,
@@ -108,7 +137,7 @@ class _ShopCardState extends State<ShopCard> {
                                 scale: 1 / Hrefix),
                             Padding(padding: EdgeInsets.only(left: Wrefix * 8)),
                             AutoSizeText(
-                              "3.7km",
+                              widget.distance,
                               style: TextStyle(
                                   fontSize: 12,
                                   fontStyle: FontStyle.italic,
@@ -127,7 +156,11 @@ class _ShopCardState extends State<ShopCard> {
         ),
       ),
       onTap: () {
-        print("Tapped on container");
+        widget.overrideView(ShopDetails(
+          toggleView: widget.toggleView,
+          overrideView: widget.overrideView,
+        ));
+        print("widget override.");
       },
     );
   }

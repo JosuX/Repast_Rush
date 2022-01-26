@@ -82,6 +82,28 @@ flutter:
     - images/SignUp.png
     - images/shop_placeholder.png
     - images/thank_smile.png
+    - images/overlay_details.png
+    - images/background_details.png
+    - images/icons/clock.png
+    - images/icons/diamond.png
+    - images/icons/heart.png
+    - images/icons/star.png
+    - images/icons/marker.png
+    - images/icons/credit.png
+    - images/icons/credit_se.png
+    - images/icons/credit_un.png
+    - images/icons/debit.png
+    - images/icons/debit_se.png
+    - images/icons/debit_un.png
+    - images/icons/gcash.png
+    - images/icons/mystery_se.png
+    - images/icons/mystery_un.png
+    - images/icons/wallet_se.png
+    - images/icons/wallet_un.png
+    - images/icons/wallet_un.png
+    - images/icons/pencil-edit.png
+    - images/pickup.png
+    - images/UserWhite.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, file_names, must_be_immutable, use_key_in_widget_constructors
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, file_names, must_be_immutable, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,9 @@ Notes :
  */
 
 class ThankOrder extends StatefulWidget {
-  const ThankOrder({Key? key}) : super(key: key);
+  final Function toggleView;
+  final Function overrideView;
+  ThankOrder({required this.toggleView, required this.overrideView});
 
   @override
   _ThankOrderState createState() => _ThankOrderState();
@@ -80,7 +82,7 @@ class _ThankOrderState extends State<ThankOrder> {
                             borderRadius: BorderRadius.circular(8))),
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Color(0xff8A9A5B))),
-                onPressed: () => {},
+                onPressed: () => {widget.toggleView(0)},
                 child: Text("CONFIRM")),
           ),
           Padding(padding: EdgeInsets.only(top: Hrefix * 6)),
