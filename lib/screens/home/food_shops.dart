@@ -1,6 +1,10 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_local_variable, unnecessary_new, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_final_fields, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_local_variable, unnecessary_new, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_final_fields, sized_box_for_whitespace, unrelated_type_equality_checks, empty_catches, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:repast_rush/screens/home/reservations.dart';
 import 'package:repast_rush/screens/home/shop_card.dart';
 import 'package:repast_rush/services/auth.dart';
 
@@ -24,6 +28,16 @@ class _FoodShopsState extends State<FoodShops> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<QueryDocumentSnapshot<Object?>?>(context);
+    final user_email = FirebaseAuth.instance.currentUser!.email;
+    String user_phone = "";
+    String user_name = "";
+    try {
+      setState(() {
+        user_name = user!.get("names");
+        user_phone = user.get("phones");
+      });
+    } catch (e) {}
     double scrWidth = MediaQuery.of(context).size.width;
     double scrHeight = MediaQuery.of(context).size.height;
     double Hrefix = scrHeight / 800;
@@ -80,7 +94,104 @@ class _FoodShopsState extends State<FoodShops> {
           ],
         ),
       ),
-      Center(),
+      Center(
+          child: Column(
+        children: [
+          Padding(padding: EdgeInsets.only(top: Hrefix * 105)),
+          Container(
+              padding: EdgeInsets.only(left: Wrefix * 13),
+              height: Hrefix * 41,
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: AutoSizeText(
+                    "Reservations",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto-Bold"),
+                  ))),
+          Padding(padding: EdgeInsets.only(top: Hrefix * 25)),
+          Row(
+            children: [
+              Padding(padding: EdgeInsets.only(left: Wrefix * 29)),
+              Container(
+                child: Image.asset(
+                  "images/warning.png",
+                  scale: 1 / Hrefix,
+                ),
+              ),
+              Padding(padding: EdgeInsets.only(left: Wrefix * 15)),
+              Container(
+                width: Wrefix * 210,
+                height: Hrefix * 28,
+                child: AutoSizeText(
+                  "This mark indicates that you can now pick up the order.",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: "Roboto-LightItalic",
+                      fontSize: 14),
+                ),
+              ),
+              Padding(padding: EdgeInsets.only(left: Wrefix * 29)),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(top: Hrefix * 43)),
+          Row(
+            children: [
+              Padding(padding: EdgeInsets.only(left: Wrefix * 27)),
+              InkWell(
+                onTap: () {
+                  widget.overrideView(Reservations(
+                    overrideView: widget.overrideView,
+                    toggleView: widget.toggleView,
+                  ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 4),
+                            blurRadius: 2.0)
+                      ]),
+                  height: Hrefix * 62,
+                  width: Wrefix * 298,
+                  child: Row(
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: Wrefix * 17)),
+                      Container(
+                        child: Column(
+                          children: [
+                            Padding(padding: EdgeInsets.only(top: Hrefix * 12)),
+                            AutoSizeText(
+                              "Food Shop A",
+                              style: TextStyle(
+                                  color: Color(0xff274B32),
+                                  fontSize: 17,
+                                  fontFamily: "Roboto-Black"),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: Hrefix * 7)),
+                            AutoSizeText(
+                              "11:00am - 12:00pm",
+                              style: TextStyle(
+                                  color: Color(0xff274B32),
+                                  fontSize: 13,
+                                  fontFamily: "Roboto-LightItalic"),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      )),
       Center(
         child: Column(
           children: [
@@ -112,7 +223,7 @@ class _FoodShopsState extends State<FoodShops> {
                         Padding(padding: EdgeInsets.only(top: Hrefix * 28)),
                         Container(
                           child: AutoSizeText(
-                            "Name of the User",
+                            user_name,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Roboto-Light",
@@ -122,7 +233,7 @@ class _FoodShopsState extends State<FoodShops> {
                         Padding(padding: EdgeInsets.only(top: Hrefix * 12)),
                         Container(
                           child: AutoSizeText(
-                            "user@gmail.com",
+                            user_email!,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Roboto-Light",
@@ -132,7 +243,7 @@ class _FoodShopsState extends State<FoodShops> {
                         Padding(padding: EdgeInsets.only(top: Hrefix * 12)),
                         Container(
                           child: AutoSizeText(
-                            "+63 9**********",
+                            user_phone,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Roboto-Light",

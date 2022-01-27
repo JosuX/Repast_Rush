@@ -41,6 +41,8 @@ dependencies:
   introduction_screen: ^2.1.0
   provider: ^6.0.2
   carousel_slider: ^4.0.0
+  timer_count_down: ^2.2.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +106,9 @@ flutter:
     - images/icons/pencil-edit.png
     - images/pickup.png
     - images/UserWhite.png
+    - images/pay_header.png
+    - images/warning.png
+    - images/alarm.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

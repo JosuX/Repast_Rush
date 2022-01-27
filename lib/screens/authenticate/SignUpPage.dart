@@ -223,8 +223,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                   Color(0xff8A9A5B))),
                           onPressed: () async {
                             if (_formkey.currentState!.validate()) {
-                              dynamic result =
-                                  await _auth.registerUser(email, password);
+                              dynamic result = await _auth.registerUser(
+                                  email, password, name, phone);
                               if (result == null) {
                                 setState(() =>
                                     error = "Please fill the required forms.");

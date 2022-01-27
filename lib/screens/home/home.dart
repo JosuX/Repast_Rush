@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_init_to_null, non_constant_identifier_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:repast_rush/models/userdata.dart';
 import 'package:repast_rush/screens/home/food_shops.dart';
-import 'package:repast_rush/services/auth.dart';
+import 'package:repast_rush/services/database.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -31,17 +34,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (override_widget == null) {
-      if (page == 1) {
-        return FoodShops(
-          toggleView: toggleView,
-          overrideView: overrideView,
+      if (page == 0) {
+        return StreamProvider<QueryDocumentSnapshot<Object?>?>.value(
+          initialData: null,
+          value: DatabaseService().userdata,
+          child: FoodShops(
+            toggleView: toggleView,
+            overrideView: overrideView,
+          ),
         );
-      } else if (page == 2) {
-        return FoodShops(toggleView: toggleView, overrideView: overrideView);
-      } else if (page == 3) {
-        return FoodShops(toggleView: toggleView, overrideView: overrideView);
-      } else {
-        return FoodShops(toggleView: toggleView, overrideView: overrideView);
       }
     }
     return override_widget;
